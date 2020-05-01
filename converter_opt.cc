@@ -22,11 +22,9 @@ quote_t qtoi(char* qt)
 
 void convert_all(unsigned nlines, char *lines[], quote_t nums[])
 {
-    char** l = lines;
-    quote_t* q = nums;
     for (unsigned i = 0; i < nlines; i++) {
-        __builtin_prefetch(l, 0, 0);
-        (*q++) = qtoi(*l++);
+        //__builtin_prefetch(&lines[i], 0, 0);
+        nums[i] = qtoi(lines[i]);
         //__builtin___clear_cache(q, q+1);
     }
 }
