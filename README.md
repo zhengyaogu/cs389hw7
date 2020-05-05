@@ -5,7 +5,7 @@ To run the naive version of `convert_all`, run `make naive` and `./driver quotes
 run `make opt` and then `./driver_opt quotes.txt 1000` in the command line.
 
 ## Part1
-We measured the time running `convert_all` with `atoi` is 0.04036s. With my naive implementation, running `convert_all` with my `stoi` takes only 0.016864s.
+We measured the time running `convert_all` with `atoi` is 0.04036s. With my naive implementation, running `convert_all` with my `qtoi` takes only 0.016864s.
 The reason for the performance boost is that atoi does not assume that the `char` array it is converting as numerical. Thus, it has to check if each character
 is numerical, which takes time. In the mean time, my function simply assumes that each character is a number and convert it into an integer.
 
@@ -21,7 +21,7 @@ This cuts the run time to around 0.0075s, a 100% improvement.
 
 ### Cstring Access
 Previously, I acess the each character in each quote using the `[]` operator which is a general accessor of array elements.
-To improve the run time, I access elements by simply incrementing the pointer and dereferencing the pointer, which improves the 
+To improve the run time, I access each digit by simply incrementing the pointer and dereferencing the pointer, which improves the 
 run time to around 0.006760s, a 11% improvement. `[]` might be too general and need to access the size of a `char` in order to increment, thus slower.
-
+However, prefetching seems to contribute nothing to improve run time. So prefetching is discarded. 
 
